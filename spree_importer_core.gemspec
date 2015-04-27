@@ -34,11 +34,4 @@ Gem::Specification.new do |s|
 
   # For handling progress status
   s.add_development_dependency 'state_machine', '~> 1.2.0'
-
-  # To read data from Spreadsheet or CSV files
-  # s.add_dependency 'roo'
-
-  # # Background Process
-  # s.add_runtime_dependency 'sidekiq'
-  # s.add_runtime_dependency 'sinatra'
 end
