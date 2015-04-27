@@ -33,7 +33,7 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree_importer_core/factories'
+require 'spree/importer_core/factories'
 ```
 
 Copyright (c) 2015 [Acid Labs](http://acid.cl), released under the New BSD License
