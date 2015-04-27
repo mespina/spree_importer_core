@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_importer_core'
-  s.version     = '2.3.1'
+  s.version     = '1.0.0'
   s.summary     = 'Import engine for Spree backend'
   s.description = 'Enables a easily way for massive load of different Spree models, depending as you need'
   s.required_ruby_version = '>= 1.9.3'
