@@ -1,0 +1,35 @@
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/importer_menu', :locals => { :current => @importer.key } %>
+
+
+<%= form_for [:admin, @import], :html => { :multipart => true } do |f| %>
+  <%= f.hidden_field :importer, value: @importer.key %>
+
+  <fieldset class="new_import">
+    <legend align="center"><%= Spree.t(:new_import, scope: :spree_importer_core) %></legend>
+
+    <div data-hook="admin_importer_attrs" class="row">
+      <div data-hook="admin_importer_document", class='six columns'>
+        <%= f.field_container :document do %>
+          <%= f.label :document, Spree.t(:document, scope: :spree_importer_core) %> <span class="required">*</span><br />
+          <%= f.file_field :document, class: 'fullwidth', required: true %>
+          <%= f.error_message_on :document %>
+        <% end %>
+      </div>
+    </div>
+
+    <p>
+      <%= Spree.t(:download_message, scope: :spree_importer_core) %>
+      <strong>
+        <%= link_to Spree.t(:template_link_text, scope: :spree_importer_core), spree.template_admin_imports_path(importer_id: @importer.key) %>
+      </strong>
+    </p>
+
+    <div class="form-buttons actions filter-actions" data-hook="buttons">
+      <%= button Spree.t(:submit_text, scope: :spree_importer_core), 'ok' %><span class="or"><%= Spree.t(:or) %></span>
+      <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), spree.admin_imports_path(importer_id: @importer.key), :class => 'button' %>
+    </div>
+
+  </fieldset>
+<% end %>

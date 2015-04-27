@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   s.email     = 'mespina.icc@gmail.com'
   # s.homepage  = 'http://www.spreecommerce.com'
 
-  #s.files       = `git ls-files`.split("\n")
-  #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  # s.files       = `git ls-files`.split("\n")
+  # s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = 'lib'
   s.requirements << 'none'
 
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'state_machine', '~> 1.2.0'
 
   # To read data from Spreadsheet or CSV files
-  s.add_dependency 'roo'
+  # s.add_dependency 'roo'
 
   # # Background Process
   # s.add_runtime_dependency 'sidekiq'

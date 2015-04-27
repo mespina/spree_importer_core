@@ -1,0 +1,33 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+  activerecord:
+    models:
+      spree/import:
+        one: Carga Masiva
+        other: Cargas Masivas
+    attributes:
+      spree/import:
+        document: Documento
+        started_at: Iniciado
+        finished_at: Terminado
+        state: Estado
+        created_at: Subido
+        updated_at: Actualizado
+        importer: Importador
+        messages: Mensajes
+  spree:
+    admin:
+      tab:
+        importers: Importar
+    spree_importer_core:
+      unknown_file_type: "Tipo de archivo desconocido: %{filename}"
+      imports: Importadores
+      import: Importador %{id}
+      show: Ver
+      new_import: Nueva Carga Masiva
+      document: Documento
+      download_message: Descargar un archivo de ejemplo
+      template_link_text: aquí
+      submit_text: Guardar

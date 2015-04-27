@@ -2,4 +2,32 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      spree/import:
+        one: Massive load
+        other: Massive loads
+    attributes:
+      spree/import:
+        document: Document
+        started_at: Started
+        finished_at: Finished
+        state: State
+        created_at: Upload
+        updated_at: Updated
+        importer: Importer
+        messages: Menssges
+  spree:
+    admin:
+      tab:
+        importers: Import
+    spree_importer_core:
+      unknown_file_type: "Unknown File Type: %{filename}"
+      imports: Importers
+      import: Import %{id}
+      show: Show
+      new_import: New Massive Load
+      document: Document
+      download_message: Download a sample file
+      template_link_text: here
+      submit_text: Save

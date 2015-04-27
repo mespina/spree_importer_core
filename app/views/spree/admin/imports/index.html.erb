@@ -1,0 +1,55 @@
+<% content_for :page_actions do %>
+  <li id="new_import_link">
+    <%= button_link_to Spree.t(:new_import, scope: :spree_importer_core), spree.new_admin_import_path(importer_id: @importer.key), { :icon => 'plus', :id => 'admin_new_import' } %>
+  </li>
+<% end if can?(:create, Spree::Import) %>
+
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/importer_menu', :locals => { :current => @importer.key } %>
+
+<% if @collection.any? %>
+  <%-# paginate @collection %>
+
+  <table class="index">
+    <colgroup>
+      <col style=("width: 35%")>
+      <col style=("width: 15%")>
+      <col style=("width: 15%")>
+      <col style=("width: 15%")>
+      <col style=("width: 10%")>
+      <col style=("width: 10%")>
+    </colgroup>
+
+    <thead data-hook="products_load_header">
+      <tr>
+        <th><%= Spree::Import.human_attribute_name(:document) %></th>
+        <th><%= Spree::Import.human_attribute_name(:created_at) %></th>
+        <th><%= Spree::Import.human_attribute_name(:started_at) %></th>
+        <th><%= Spree::Import.human_attribute_name(:finished_at) %></th>
+        <th><%= Spree::Import.human_attribute_name(:state) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @collection.each do |import| %>
+        <tr class="<%= cycle('odd', 'even') %>" data-hook="product_load_row">
+          <td><%= import.document_file_name %></td>
+          <td><%= l import.created_at %></td>
+          <td><%= l(import.started_at)  if import.started_at %></td>
+          <td><%= l(import.finished_at) if import.finished_at %></td>
+          <td class="align-center"><i class="fa <%= import.status_icon %>"></i></td>
+          <td class="actions"><%= link_to_with_icon 'eye', Spree.t(:show, scope: :spree_importer_core), spree.admin_import_path(import, importer_id: @importer.key), :no_text => true %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%-# paginate @collection %>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: Spree::Import.model_name.human(count: 2)) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_import_path(importer_id: @importer.key) %>!
+  </div>
+<% end %>

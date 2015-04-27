@@ -12,6 +12,10 @@ module Spree
         g.test_framework :rspec
       end
 
+      initializer "spree.register.importers_configuration", :before => :load_config_initializers do |app|
+        Spree::ImporterCore::Config = Spree::ImportersConfiguration.new
+      end
+
       def self.activate
         Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
           Rails.configuration.cache_classes ? require(c) : load(c)

@@ -1,0 +1,72 @@
+<% content_for :page_actions do  %>
+  <li id="new_import_link" data-hook=''>
+    <%= button_link_to Spree.t(:new_import, scope: :spree_importer_core), spree.new_admin_import_path(importer_id: @importer.key), { :icon => 'plus', :id => 'admin_new_import' } %>
+  </li>
+<% end if can?(:create, Spree::Import) %>
+
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/importer_menu', :locals => { :current => @importer.key } %>
+
+<fieldset class="import_fields">
+  <legend align="center"><%= Spree.t(:import, scope: :spree_importer_core, id: @import.id) %></legend>
+
+  <dl>
+    <dt><%= Spree::Import.human_attribute_name(:document) %></dt>
+    <dd><%= @import.document_file_name %></dd>
+
+    <dt><%= Spree::Import.human_attribute_name(:created_at) %></dt>
+    <dd><%= l @import.created_at %></dd>
+
+    <dt><%= Spree::Import.human_attribute_name(:started_at) %></dt>
+    <dd><%= l(@import.started_at) if @import.started_at %></dd>
+
+    <dt><%= Spree::Import.human_attribute_name(:finished_at) %></dt>
+    <dd><%= l(@import.finished_at) if @import.finished_at %></dd>
+
+    <dt><%= Spree::Import.human_attribute_name(:status) %></dt>
+    <dt><i class="fa <%= @import.status_icon %>"></i></dt>
+  </dl>
+
+  <div class="form-buttons filter-actions actions" data-hook="buttons">
+    <%= link_to Spree.t('actions.back'), spree.admin_imports_path(importer_id: @importer.key), :id => 'cancel_link', :class => 'button' %>
+  </div>
+</fieldset>
+
+<% content_for :logs do %>
+  <p><strong><%= Spree::Import.human_attribute_name(:messages) %></strong></p>
+  <table class="table import-logs">
+    <colgroup>
+      <col style=("width: 30%")>
+      <col style=("width: 60%")>
+      <col style=("width: 10%")>
+    </colgroup>
+
+    <% @import.messages.each do |message| %>
+      <tr class="message_<%= message[:row_index] %>" data-message="message_<%= message[:row_index] %>">
+        <td>Error en linea <%= message[:row_index] %>:</td>
+        <td class="log-message"><%= message[:message] %></td>
+        <td>
+          <a class="plus" href="javascript:void(0);">
+            <i class="fa fa-plus-square-o"></i>
+          </a>
+          <a class="minus dn" href="javascript:void(0);">
+            <i class="fa fa-minus-square-o"></i>
+          </a>
+        </td>
+      </tr>
+
+      <tr class="message_<%= message[:row_index] %> log-data dn">
+        <td colspan='3'><%= message[:data] %></td>
+      </tr>
+
+      <tr class="message_<%= message[:row_index] %> log-backtrace dn">
+        <td colspan='3'>
+          <% message[:backtrace].each do |backtrace| %>
+            <p><%= backtrace %></p>
+          <% end %>
+        </td>
+      </td>
+    <% end %>
+  </table>
+<% end %>
