@@ -1,2 +1,2 @@
 require 'spree_core'
-require 'spree_importer_core/engine'
+require 'spree/importer_core/engine'
