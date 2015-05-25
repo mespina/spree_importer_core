@@ -16,8 +16,9 @@ en:
         created_at: Upload
         updated_at: Updated
         importer: Importer
-        messages: Menssges
+        messages: Messages
   spree:
+    importers: Importers
     admin:
       tab:
         importers: Import

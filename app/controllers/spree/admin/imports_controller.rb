@@ -1,7 +1,6 @@
 module Spree
   module Admin
     class ImportsController < Spree::Admin::ResourceController
-      before_filter :set_importers
       before_filter :set_importer
 
       after_filter :perform_import, only: :create
@@ -28,10 +27,6 @@ module Spree
       private
         def perform_import
           @import.perform if @import.persisted?
-        end
-
-        def set_importers
-          @importers = Spree::ImporterCore::Config.importers
         end
 
         def set_importer

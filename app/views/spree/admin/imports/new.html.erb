@@ -1,17 +1,17 @@
-<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @import } %>
 
-<%= render :partial => 'spree/admin/shared/importer_menu', :locals => { :current => @importer.key } %>
-
+<% content_for :page_title do %>
+  <%= Spree.t(:new_import, scope: [:spree_importer_core, @importer.key]) %>
+<% end %>
 
 <%= form_for [:admin, @import], :html => { :multipart => true } do |f| %>
   <%= f.hidden_field :importer, value: @importer.key %>
+  <%= f.hidden_field :state, value: :created %>
 
   <fieldset class="new_import">
-    <legend align="center"><%= Spree.t(:new_import, scope: :spree_importer_core) %></legend>
-
     <div data-hook="admin_importer_attrs" class="row">
-      <div data-hook="admin_importer_document", class='six columns'>
-        <%= f.field_container :document do %>
+      <div data-hook="admin_importer_document" class='col-md-12'>
+        <%= f.field_container :document, class: ['form-group'] do %>
           <%= f.label :document, Spree.t(:document, scope: :spree_importer_core) %> <span class="required">*</span><br />
           <%= f.file_field :document, class: 'fullwidth', required: true %>
           <%= f.error_message_on :document %>
@@ -19,16 +19,21 @@
       </div>
     </div>
 
-    <p>
-      <%= Spree.t(:download_message, scope: :spree_importer_core) %>
-      <strong>
-        <%= link_to Spree.t(:template_link_text, scope: :spree_importer_core), spree.template_admin_imports_path(importer_id: @importer.key) %>
-      </strong>
-    </p>
+    <div class="row">
+      <div class='col-md-12'>
+        <div class="alert alert-info no-objects-found">
+          <%= Spree.t(:download_message, scope: :spree_importer_core) %>
+          <strong>
+            <%= link_to Spree.t(:template_link_text, scope: :spree_importer_core), spree.template_admin_imports_path(importer_id: @importer.key) %>
+          </strong>!
+        </div>
+      </div>
+    </div>
 
-    <div class="form-buttons actions filter-actions" data-hook="buttons">
-      <%= button Spree.t(:submit_text, scope: :spree_importer_core), 'ok' %><span class="or"><%= Spree.t(:or) %></span>
-      <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), spree.admin_imports_path(importer_id: @importer.key), :class => 'button' %>
+    <div class="form-actions" data-hook="buttons">
+      <%= button Spree.t(:submit_text, scope: :spree_importer_core), 'ok', 'submit', {class: 'btn-success'} %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t('actions.cancel'), spree.admin_imports_path(importer_id: @importer.key), :icon => 'remove' %>
     </div>
 
   </fieldset>

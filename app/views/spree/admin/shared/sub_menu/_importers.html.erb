@@ -1,0 +1,5 @@
+<ul id="sidebar-importers" class="collapse nav nav-pills nav-stacked" data-hook="admin_importers_sub_tabs">
+  <% Spree::ImporterCore::Config.importers.each do |importer| %>
+    <%= tab importer.name, url: spree.admin_imports_path(importer_id: importer.key) %>
+  <% end %>
+</ul>

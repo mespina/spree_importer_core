@@ -43,10 +43,10 @@ class Spree::Import < ActiveRecord::Base
   def status_icon
     case state
     when 'created' then return ''
-    when 'processing' then return 'fa-spinner fa-spin'
-    when 'completed' then return 'fa-ok'
-    when 'failed' then return 'fa-warning'
-    when 'stopped' then return 'fa-stop'
+    when 'processing' then return 'icon-spinner icon-spin'
+    when 'completed' then return 'icon-ok'
+    when 'failed' then return 'icon-warning'
+    when 'stopped' then return 'icon-stop'
     else return ''
     end
   end

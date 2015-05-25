@@ -1,5 +1,3 @@
-<% if importer = Spree::ImporterCore::Config.importers.first %>
-  <%= tab :importers, url: admin_imports_path(importer_id: importer.key), match_path: /imports/ %>
-<% else %>
-  <%= tab :importers, url: '#', match_path: /imports/ %>
-<% end %>
+<ul class="nav nav-sidebar">
+  <%= main_menu_tree Spree.t(:importers), icon: "transfer", sub_menu: "importers", url: '#sidebar-importers' %>
+</ul>
