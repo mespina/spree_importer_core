@@ -35,7 +35,12 @@ module Spree
 
       protected
         def collection
-          model_class.accessible_by(current_ability, action).where(importer: params[:importer_id].to_s)
+          return @collection if @collection.present?
+
+          @collection = super
+          @collection = @collection.where(importer: params[:importer_id].to_s)
+                                   .page(params[:page])
+                                   .per(params[:per_page] || Spree::Config[:admin_products_per_page])
         end
     end
   end
