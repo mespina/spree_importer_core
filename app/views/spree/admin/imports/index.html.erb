@@ -35,7 +35,7 @@
           <td><%= l import.created_at %></td>
           <td><%= l(import.started_at)  if import.started_at %></td>
           <td><%= l(import.finished_at) if import.finished_at %></td>
-          <td class="align-center"><i class="icon <%= import.status_icon %>"></i></td>
+          <td class="align-center"><i class="glyphicon <%= import.status_icon %>"></i></td>
           <td class="actions"><%= link_to_with_icon 'eye-open', Spree.t(:show, scope: :spree_importer_core), spree.admin_import_path(import, importer_id: @importer.key), :no_text => true %></td>
         </tr>
       <% end %>
@@ -48,5 +48,3 @@
     <%= link_to Spree.t(:add_one), spree.new_admin_import_path(importer_id: @importer.key) %>!
   </div>
 <% end %>
-
-<%-# paginate @collection %>
