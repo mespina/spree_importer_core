@@ -6,6 +6,8 @@
   <%= button_link_to Spree.t(:new_import, scope: :spree_importer_core), spree.new_admin_import_path(importer_id: @importer.key), { :class => "btn-success", :icon => 'add', 'data-update' => 'new_import_link', :id => 'admin_new_import' } %>
 <% end if can?(:create, Spree::Import) %>
 
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>
+
 <% if @collection.any? %>
   <table class="table" id='listing_imports'>
     <colgroup>
@@ -48,3 +50,5 @@
     <%= link_to Spree.t(:add_one), spree.new_admin_import_path(importer_id: @importer.key) %>!
   </div>
 <% end %>
+
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @collection } %>
