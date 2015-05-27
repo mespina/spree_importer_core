@@ -33,7 +33,7 @@ module Spree
 
       # A unique key identifier for importer
       def self.key
-        raise "#{__FILE__}:#{__LINE__} You must define it"
+        self.to_s.gsub('Importer', '').demodulize.underscore
       end
 
       # Load a file and the get data from each file row
