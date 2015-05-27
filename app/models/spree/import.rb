@@ -1,4 +1,6 @@
 class Spree::Import < ActiveRecord::Base
+  include GlobalID::Identification
+
   serialize :messages, Array
 
   ALLOWED_FILE_FORMATS = /^text\/csv|application\/(octet-stream|vnd.openxmlformats-officedocument.spreadsheetml.sheet)$/
@@ -53,14 +55,5 @@ class Spree::Import < ActiveRecord::Base
 
   def importer_class
     Spree::ImporterCore::Config.importers.select{|i| i.key.to_s == self.importer.to_s}.first
-  end
-
-  def perform
-    # ToDo - Revisar si esta disponible sidekiq, de lo contrario ejecutar inline
-    if Rails.env.development?
-      importer_class.new(id).process
-    else
-      # Spree::ImporterCore::ImporterWorker.perform_async(self.id)
-    end
   end
 end

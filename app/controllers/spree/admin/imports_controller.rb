@@ -26,7 +26,7 @@ module Spree
 
       private
         def perform_import
-          @import.perform if @import.persisted?
+          ImportJob.perform_later(@import) if @import.persisted?
         end
 
         def set_importer

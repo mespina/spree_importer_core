@@ -22,8 +22,10 @@ gem 'spree_importer_core'
 
 ```shell
 bundle install
-bundle exec rails g spree_importer_core:install
+bundle exec rails g spree:importer_core:install
 ```
+
+Note: `SpreeImporterCore` uses `ActiveJob` for background processing. You may want to specify an adapter before importing, otherwise the job is immediately executed.
 
 Usage
 -----
@@ -55,7 +57,7 @@ class Spree::ThingImporter < Spree::ImporterCore::BaseImporter
     sku = row[0]
     stock = row[1]
     if variant = Spree::Variant.find_by(sku: sku)
-   	  stock_item = Spree::StockItem.find_by variant_id: variant.id    
+   	  stock_item = Spree::StockItem.find_by variant_id: variant.id
       stock_item.update_attribute(:count_on_hand, stock)
     end
   end
@@ -92,6 +94,7 @@ Edit `config/initializers/spree.rb` to define/modify the available importers.
 ```ruby
 Spree::ImporterCore::Config.importers << Spree::ThingImporter
 ```
+
 
 Testing
 -------
