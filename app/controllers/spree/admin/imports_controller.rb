@@ -41,6 +41,7 @@ module Spree
           @collection = @collection.where(importer: params[:importer_id].to_s)
                                    .page(params[:page])
                                    .per(params[:per_page] || Spree::Config[:admin_products_per_page])
+                                   .order(id: :desc)
         end
     end
   end
