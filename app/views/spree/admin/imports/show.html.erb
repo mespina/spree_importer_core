@@ -21,7 +21,7 @@
     <dd><%= l(@import.finished_at) if @import.finished_at %></dd>
 
     <dt><%= Spree::Import.human_attribute_name(:status) %></dt>
-    <dt><i class="fa <%= @import.status_icon %>"></i></dt>
+    <dd><i class="glyphicon <%= @import.status_icon %>"></i></dd>
   </dl>
 
   <div class="form-actions" data-hook="buttons">
