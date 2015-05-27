@@ -34,4 +34,7 @@ Gem::Specification.new do |s|
 
   # For handling progress status
   s.add_development_dependency 'state_machine', '~> 1.2.0'
+
+  # Roo provides an interface to Open Office, Excel, and Google Spreadsheets
+  s.add_dependency 'roo'
 end
