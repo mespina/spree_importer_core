@@ -19,6 +19,82 @@ bundle
 bundle exec rails g spree_importer_core:install
 ```
 
+
+Usage
+-----
+
+
+Usted puede generar un archivo para sus import con el siguiente comando:
+
+
+```ruby
+rails g spree:importer_core:importer Thing
+```
+
+Esto genera por usted las configuraciones necesarias para que el nuevo importer funcione sin complicaciones, a continuacion se describen los cambios realizado por el generador:
+
+- This will create a new importer class
+
+- Insert importer locales for new importer class
+
+- And, update importers list
+
+Despues es necesario que reinicies tu servidor rails
+
+
+### New importer Class
+
+The new importer class, will be placed at: `app/models/spree/importer_core/thig_importer.rb`
+
+Debes definir el comportamiento de tu importer para cada fila del archivo.
+
+Ej: si estamos actualizando Stock
+
+```ruby
+class Spree::ThingImporter < Spree::ImporterCore::BaseImporter
+  # Load a file and the get data from each file row
+  def load_data(row:)
+    sku = row[0]
+    stock = row[1]
+    if variant = Spree::Variant.find_by(sku: sku)
+   	  stock_item = Spree::StockItem.find_by variant_id: variant.id    
+      stock_item.update_attribute(:count_on_hand, stock)
+    end
+  end
+end
+```
+
+Nota: el nombre del importer puede ser cualquiera, pero idealmente debiese ser un nombre asociado a lo que se desea importar
+
+
+### Importer Locales
+
+The inserted locales, will be placed at: `config/spree_importer_core.en.yml` and look like:
+
+```
+en:
+  spree:
+    spree_importer_core:
+      importers:
+        thig:
+          title: Thig Importer
+          name: Thig
+```
+
+New importer need `title` for views and `name` for menu
+
+
+### Importer List
+
+ImporterCore define una lista con los importer's disponibles, usted puede quitar o agregar los importers que desee, siempre y cuando estos hereden de la clase `Spree::ImporterCore::BaseImporter`, ya que en esta se definen los metodos generales que permite su funcionamiento. Para esto ustede debe modificar su archivo `config/initializers/spree.rb` y definir/modificar los importers dispinibles.
+
+
+
+```ruby
+Spree::ImporterCore::Config.importers << Spree::ThingImporter
+```
+
+
 Testing
 -------
 
