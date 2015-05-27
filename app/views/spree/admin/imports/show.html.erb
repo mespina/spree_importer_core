@@ -1,5 +1,9 @@
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:new_import, scope: :spree_importer_core), spree.new_admin_import_path(importer_id: @importer.key), { :class => "btn-success", :icon => 'add', 'data-update' => 'new_import_link', :id => 'admin_new_import' } %>
+  <div class="form-actions" data-hook="buttons">
+    <%= button_link_to Spree.t('actions.back'), spree.admin_imports_path(importer_id: @importer.key), {icon: 'chevron-left'} %>
+
+    <%= button_link_to Spree.t(:new_import, scope: :spree_importer_core), spree.new_admin_import_path(importer_id: @importer.key), { :class => "btn-success", :icon => 'add', 'data-update' => 'new_import_link', :id => 'admin_new_import' } %>
+  </div>
 <% end if can?(:create, Spree::Import) %>
 
 <% content_for :page_title do %>
@@ -23,10 +27,6 @@
     <dt><%= Spree::Import.human_attribute_name(:status) %></dt>
     <dd><i class="glyphicon <%= @import.status_icon %>"></i></dd>
   </dl>
-
-  <div class="form-actions" data-hook="buttons">
-    <%= button_link_to Spree.t('actions.back'), spree.admin_imports_path(importer_id: @importer.key) %>
-  </div>
 </fieldset>
 
 <div class="row">
