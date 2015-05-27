@@ -5,6 +5,8 @@ module Spree
 
         class_option :auto_run_migrations, :type => :boolean, :default => false
 
+        source_root File.expand_path('../templates', __FILE__)
+
         def add_javascripts
           append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/spree_importer_core\n"
           append_file 'vendor/assets/javascripts/spree/backend/all.js', "//= require spree/backend/spree_importer_core\n"
@@ -17,6 +19,10 @@ module Spree
 
         def add_migrations
           run 'bundle exec rake railties:install:migrations FROM=spree_importer_core'
+        end
+
+        def add_locale
+          copy_file('spree_importer_core.en.yml', 'config/spree_importer_core.en.yml')
         end
 
         def run_migrations
