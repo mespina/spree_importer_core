@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'paperclip', '~> 4.2'
 
   # For handling progress status
-  s.add_development_dependency 'state_machine', '~> 1.2.0'
+  s.add_dependency 'state_machine', '~> 1.2.0'
 
   # Roo provides an interface to Open Office, Excel, and Google Spreadsheets
   s.add_dependency 'roo'
