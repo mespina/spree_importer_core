@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= plural_resource_name(Spree::Import) %>
+  <%= Spree.t(:title, scope: [:spree_importer_core, :importers, @importer.key], default: plural_resource_name(Spree::Import)) %>
 <% end %>
 
 <% content_for :page_actions do %>

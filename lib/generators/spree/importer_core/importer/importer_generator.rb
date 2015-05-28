@@ -11,7 +11,7 @@ module Spree
         def add_locale
           inject_into_file 'config/locales/spree_importer_core.en.yml', "
         #{file_name}:
-          title: #{file_name.titleize} Importer
+          title: #{file_name.singularize.titleize} Imports
           name: #{file_name.titleize}", :after => "importers:", :verbose => true
         end
 
