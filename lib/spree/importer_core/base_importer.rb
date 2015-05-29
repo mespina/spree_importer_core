@@ -47,7 +47,7 @@ module Spree
               load_data row: @spreadsheet.row(row_index)
 
             rescue => e
-              add_error message: e.message, backtrace: e.backtrace, row_index: row_index, data: data
+              add_error message: e.message, backtrace: e.backtrace, row_index: row_index, data: @spreadsheet.row(row_index)
 
               raise ActiveRecord::Rollback
             end
