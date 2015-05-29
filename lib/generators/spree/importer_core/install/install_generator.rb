@@ -22,7 +22,7 @@ module Spree
         end
 
         def add_locale
-          copy_file('spree_importer_core.en.yml', 'config/spree_importer_core.en.yml')
+          copy_file('spree_importer_core.en.yml', 'config/locales/spree_importer_core.en.yml')
         end
 
         def run_migrations
