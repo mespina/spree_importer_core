@@ -23,7 +23,6 @@ en:
       tab:
         importers: Import
     spree_importer_core:
-      unknown_file_type: "Unknown File Type: %{filename}"
       imports: Importers
       import: Import %{id}
       show: Show

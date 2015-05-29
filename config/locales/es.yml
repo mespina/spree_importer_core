@@ -22,7 +22,6 @@ es:
       tab:
         importers: Importar
     spree_importer_core:
-      unknown_file_type: "Tipo de archivo desconocido: %{filename}"
       imports: Importadores
       import: Importador %{id}
       show: Ver

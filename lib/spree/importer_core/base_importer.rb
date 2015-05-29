@@ -73,16 +73,8 @@ module Spree
       private
         # Returns a Roo instance acording the file extension.
         def open_spreadsheet
-          case File.extname(@filename)
-            when '.csv'  then @spreadsheet = Roo::CSV.new(@filepath)
-            when '.xls'  then @spreadsheet = Roo::Excel.new(@filepath, nil, :ignore)
-            when '.xlsx' then @spreadsheet = Roo::Excelx.new(@filepath, nil, :ignore)
-
-            else raise Spree.t(:unknown_file_type, scope: :spree_importer_core, filename: @filename)
-          end
-
+          @spreadsheet = Roo::Spreadsheet.open(@filepath)
           @spreadsheet.default_sheet = @spreadsheet.sheets.first
-
         rescue => e
           add_error message: e.message, backtrace: e.backtrace, row_index: nil, data: {}
         end
