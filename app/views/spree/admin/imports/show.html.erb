@@ -45,19 +45,19 @@
           <td class="log-message"><%= message[:message] %></td>
           <td>
             <a class="plus" href="javascript:void(0);">
-              <i class="fa fa-plus-square-o"></i>
+              <i class="glyphicon glyphicon-plus"></i>
             </a>
             <a class="minus dn" href="javascript:void(0);">
-              <i class="fa fa-minus-square-o"></i>
+              <i class="glyphicon glyphicon-minus"></i>
             </a>
           </td>
         </tr>
 
-        <tr class="message_<%= message[:row_index] %> log-data dn">
+        <tr class="message_<%= message[:row_index] %> log-data dn warning">
           <td colspan='3'><%= message[:data] %></td>
         </tr>
 
-        <tr class="message_<%= message[:row_index] %> log-backtrace dn">
+        <tr class="message_<%= message[:row_index] %> log-backtrace dn danger">
           <td colspan='3'>
             <% message[:backtrace].each do |backtrace| %>
               <p><%= backtrace %></p>
