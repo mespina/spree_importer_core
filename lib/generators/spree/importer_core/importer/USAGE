@@ -1,5 +1,5 @@
 Description:
-    Permite generar un nuevo mecanismo para importar datos, de modo que solo te preocupes de su implementación
+    Will generate a new mechanism for importing data, so only worry for implementation
 
 Example:
     rails generate importer Thing
@@ -9,6 +9,9 @@ Example:
 
     Insert importer locales into:
         config/spree_importer_core.en.yml
+
+    Add sample importer template
+        lib/templates/spree_importer_core/thig.xlsx
 
     And update importers list at:
         config/initializers/spree.rb

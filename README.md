@@ -40,6 +40,7 @@ This will generate the needed files in order to make the importer to work as int
 
 - Create new *importer* file
 - Insert importer locales for new *importer* class
+- Add *sample* importer template
 - And, update *importers* list
 
 Then, just restart your rails server
@@ -84,9 +85,15 @@ en:
 Every importer needs `title` for views and `name` for the menu
 
 
+### Add sample importer template
+
+`ImporterCore` create a sample importer template at `lib/templates/spree_importer_core/`, you need to replace with their correct content. In the last example, file be called `thing.xlsx`.
+
+
+
 ### Importer List
 
-ImporterCore defines a list with the available importers, you may want to add or remove your own importers. Remember to make your classes to inherit from `Spree::ImporterCore::BaseImporter`, otherwise needed methods won't be defined.
+`ImporterCore` defines a list with the available importers, you may want to add or remove your own importers. Remember to make your classes to inherit from `Spree::ImporterCore::BaseImporter`, otherwise needed methods won't be defined.
 
 Edit `config/initializers/spree.rb` to define/modify the available importers.
 
