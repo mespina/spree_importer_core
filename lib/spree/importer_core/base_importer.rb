@@ -67,7 +67,7 @@ module Spree
 
       # The importer sample file
       def self.sample_file
-        Rails.root.join("lib/templates/#{key}.csv")
+        Rails.root.join("lib/templates/spree_importer_core/#{key}.xlsx")
       end
 
       private

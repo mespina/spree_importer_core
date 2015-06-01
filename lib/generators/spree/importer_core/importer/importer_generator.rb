@@ -15,6 +15,10 @@ module Spree
           name: #{file_name.titleize}", :after => "importers:", :verbose => true
         end
 
+        def add_template
+          template("importer.xlsx", "lib/templates/spree_importer_core/#{file_name}.xlsx")
+        end
+
         def add_to_importers
           append_file 'config/initializers/spree.rb', "Spree::ImporterCore::Config.importers << Spree::#{class_name}Importer\n"
         end
