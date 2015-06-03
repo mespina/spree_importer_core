@@ -29,42 +29,45 @@
   </dl>
 </fieldset>
 
-<div class="row">
-  <div class="col-sm-12">
-    <p><strong><%= Spree::Import.human_attribute_name(:messages) %></strong></p>
-    <table class="table import-logs">
-      <colgroup>
-        <col width="30%">
-        <col width="60%">
-        <col width="10%">
-      </colgroup>
 
-      <% @import.messages.each do |message| %>
-        <tr class="message_<%= message[:row_index] %>" data-message="message_<%= message[:row_index] %>">
-          <td>Error en linea <%= message[:row_index] %>:</td>
-          <td class="log-message"><%= message[:message] %></td>
-          <td>
-            <a class="plus" href="javascript:void(0);">
-              <i class="glyphicon glyphicon-plus"></i>
-            </a>
-            <a class="minus dn" href="javascript:void(0);">
-              <i class="glyphicon glyphicon-minus"></i>
-            </a>
+<% if @import.messages.any? %>
+  <div class="row">
+    <div class="col-sm-12">
+      <p><strong><%= Spree::Import.human_attribute_name(:messages) %></strong></p>
+      <table class="table import-logs">
+        <colgroup>
+          <col width="30%">
+          <col width="60%">
+          <col width="10%">
+        </colgroup>
+
+        <% @import.messages.each do |message| %>
+          <tr class="message_<%= message[:row_index] %>" data-message="message_<%= message[:row_index] %>">
+            <td>Error en linea <%= message[:row_index] %>:</td>
+            <td class="log-message"><%= message[:message] %></td>
+            <td>
+              <a class="plus" href="javascript:void(0);">
+                <i class="glyphicon glyphicon-plus"></i>
+              </a>
+              <a class="minus dn" href="javascript:void(0);">
+                <i class="glyphicon glyphicon-minus"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr class="message_<%= message[:row_index] %> log-data dn warning">
+            <td colspan='3'><%= message[:data] %></td>
+          </tr>
+
+          <tr class="message_<%= message[:row_index] %> log-backtrace dn danger">
+            <td colspan='3'>
+              <% message[:backtrace].each do |backtrace| %>
+                <p><%= backtrace %></p>
+              <% end %>
+            </td>
           </td>
-        </tr>
-
-        <tr class="message_<%= message[:row_index] %> log-data dn warning">
-          <td colspan='3'><%= message[:data] %></td>
-        </tr>
-
-        <tr class="message_<%= message[:row_index] %> log-backtrace dn danger">
-          <td colspan='3'>
-            <% message[:backtrace].each do |backtrace| %>
-              <p><%= backtrace %></p>
-            <% end %>
-          </td>
-        </td>
-      <% end %>
-    </table>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
+<% end %>
