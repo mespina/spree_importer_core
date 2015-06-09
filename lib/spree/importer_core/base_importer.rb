@@ -7,7 +7,12 @@ module Spree
         @import  = Spree::Import.find(import_id)
 
         @filename = @import.document_file_name
-        @filepath = @import.document.path
+
+        if File.exists?(@import.document.path)
+          @filepath = @import.document.path
+        else
+          @filepath = @import.document.url
+        end
 
         @spreadsheet = nil
 
@@ -73,7 +78,7 @@ module Spree
       private
         # Returns a Roo instance acording the file extension.
         def open_spreadsheet
-          @spreadsheet = Roo::Spreadsheet.open(@filepath)
+          @spreadsheet = Roo::Spreadsheet.open(@filepath, extension: :xlsx)
           @spreadsheet.default_sheet = @spreadsheet.sheets.first
         rescue => e
           add_error message: e.message, backtrace: e.backtrace, row_index: nil, data: {}
