@@ -5,7 +5,7 @@ module Spree
         source_root File.expand_path('../templates', __FILE__)
 
         def add_importer_class
-          template('importer.rb', "app/models/spree/#{file_name}_importer.rb")
+          template('importer.rb', "lib/spree_importer_core/#{file_name}_importer.rb")
         end
 
         def add_locale
@@ -16,7 +16,7 @@ module Spree
         end
 
         def add_template
-          template("importer.xlsx", "lib/templates/spree_importer_core/#{file_name}.xlsx")
+          template("importer.xlsx", "lib/spree_importer_core/templates/#{file_name}.xlsx")
         end
 
         def add_to_importers

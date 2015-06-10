@@ -47,7 +47,7 @@ Then, just restart your rails server
 
 ### New importer Class
 
-The new importer class will be placed at `app/models/spree/importer_core/thing_importer.rb`
+The new importer class will be placed at `lib/spree_importer_core/thing_importer.rb`
 
 Importer behavior must be defined in order to correctly import spreadsheet rows. e.g: Updating stock
 
@@ -87,7 +87,7 @@ Every importer needs `title` for views and `name` for the menu
 
 ### Add sample importer template
 
-`ImporterCore` create a sample importer template at `lib/templates/spree_importer_core/`, you need to replace with their correct content. In the last example, file be called `thing.xlsx`.
+`ImporterCore` create a sample importer template at `lib/spree_importer_core/templates/`, you need to replace with their correct content. In the last example, file be called `thing.xlsx`.
 
 
 

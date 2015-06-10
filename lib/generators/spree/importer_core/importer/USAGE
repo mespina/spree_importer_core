@@ -5,13 +5,13 @@ Example:
     rails generate importer Thing
 
     This will create:
-        app/models/spree/importer_core/thig_importer.rb
+        lib/spree_importer_core/thig_importer.rb
 
     Insert importer locales into:
         config/spree_importer_core.en.yml
 
     Add sample importer template
-        lib/templates/spree_importer_core/thig.xlsx
+        lib/spree_importer_core/templates/thig.xlsx
 
     And update importers list at:
         config/initializers/spree.rb
