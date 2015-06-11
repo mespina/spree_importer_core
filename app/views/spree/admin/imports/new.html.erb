@@ -1,7 +1,7 @@
 <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @import } %>
 
 <% content_for :page_title do %>
-  <%= Spree.t(:new_import, scope: [:spree_importer_core, @importer.key]) %>
+  <%= Spree.t(:new_import, scope: :spree_importer_core) %>
 <% end %>
 
 <%= form_for [:admin, @import], :html => { :multipart => true } do |f| %>

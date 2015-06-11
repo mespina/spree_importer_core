@@ -10,6 +10,7 @@ en:
     attributes:
       spree/import:
         document: Document
+        document_content_type: Content Type
         started_at: Started
         finished_at: Finished
         state: State

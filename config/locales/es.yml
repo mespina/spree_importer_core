@@ -10,6 +10,7 @@ es:
     attributes:
       spree/import:
         document: Documento
+        document_content_type: Tipo Contenido
         started_at: Iniciado
         finished_at: Terminado
         state: Estado
@@ -18,13 +19,13 @@ es:
         importer: Importador
         messages: Mensajes
   spree:
-    importers: Importadores
+    importers: Cargas Masivas
     admin:
       tab:
-        importers: Importar
+        importers: Carga Masiva
     spree_importer_core:
-      imports: Importadores
-      import: Importador %{id}
+      imports: Cargas Masivas
+      import: Carga Masiva %{id}
       show: Ver
       new_import: Nueva Carga Masiva
       document: Documento
