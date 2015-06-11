@@ -24,7 +24,7 @@
     <dt><%= Spree::Import.human_attribute_name(:finished_at) %></dt>
     <dd><%= l(@import.finished_at) if @import.finished_at %></dd>
 
-    <dt><%= Spree::Import.human_attribute_name(:status) %></dt>
+    <dt><%= Spree::Import.human_attribute_name(:state) %></dt>
     <dd><i class="glyphicon <%= @import.status_icon %>"></i></dd>
   </dl>
 </fieldset>

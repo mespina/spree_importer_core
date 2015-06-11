@@ -18,6 +18,7 @@ es:
         importer: Importador
         messages: Mensajes
   spree:
+    importers: Importadores
     admin:
       tab:
         importers: Importar
