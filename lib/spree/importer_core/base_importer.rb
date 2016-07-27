@@ -1,4 +1,5 @@
 require 'roo'
+require 'roo-xls'
 
 module Spree
   module ImporterCore
@@ -79,6 +80,10 @@ module Spree
         # Returns a Roo instance acording the file extension.
         def open_spreadsheet
           @spreadsheet = Roo::Spreadsheet.open(@filepath, extension: :xlsx)
+          @spreadsheet.default_sheet = @spreadsheet.sheets.first
+        rescue Zip::Error
+          # Supports spreadsheets with extension .xls
+          @spreadsheet = Roo::Spreadsheet.open(@filepath)
           @spreadsheet.default_sheet = @spreadsheet.sheets.first
         rescue => e
           add_error message: e.message, backtrace: e.backtrace, row_index: nil, data: {}
